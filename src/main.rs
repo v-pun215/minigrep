@@ -7,7 +7,7 @@ fn grep(path: &String, target: &String) -> io::Result<()> {
     //print!("CALLED {} {}", path, target);
     if !Path::new(path).exists() {
         println!("{}: No such file or directory", path);
-        return Err(Error::new(ErrorKind::NotFound, "File not found"));
+        return Err(Error::new(ErrorKind::NotFound, "file not found"));
     }
     let file = File::open(path)?;
     let reader= BufReader::new(file);
@@ -25,7 +25,10 @@ fn main() {
     // mini grep
     let args: Vec<String> = env::args().collect();
     let string_search = &args[1];
-    let path = &args[2];
-
-    let _ = grep(&path, &string_search);
+    if args[1] == "help" && args.len()==2 {
+        println!("USAGE: minigrep [text-to-search] [path/to/file]")
+    } else {
+        let path = &args[2];
+        let _ = grep(&path, &string_search);
+    }
 }
