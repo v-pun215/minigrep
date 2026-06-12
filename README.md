@@ -7,6 +7,7 @@ My first rust project.
 Compile with `cargo build`.
 
 Usage:
+
 `minigrep [text-to-search] [path-to-file]`
 
 `help`
